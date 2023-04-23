@@ -31,11 +31,16 @@ const ShoeCard = ({
       ? 'new-release'
       : 'default'
 
+  const badge = variant !== 'default'
+    ? <Badge variant={variant} />
+    : null
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
+          {badge}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -49,6 +54,46 @@ const ShoeCard = ({
     </Link>
   );
 };
+
+const BaseBadge = styled.span`
+  padding: 7px 9px 9px 11px;
+  border-radius: 2px;
+
+  position: absolute;
+  top: 12px;
+  right: -4px;
+
+  color: ${COLORS.white};
+  font-weight: ${WEIGHTS.semibold};
+`
+
+const NewReleaseBadge = () => {
+  const Component = styled(BaseBadge)`
+    background-color: ${COLORS.secondary};
+  `
+
+  return <Component>Just Released!</Component>
+}
+
+const OnSaleBadge = () => {
+  const Component = styled(BaseBadge)`
+    background-color: ${COLORS.primary};
+  `
+
+  return <Component>Sale</Component>
+}
+
+const BADGE_VARIANTS = {
+  'on-sale': OnSaleBadge,
+  'new-release': NewReleaseBadge,
+}
+
+const Badge = ({ variant }) => {
+  const Variant = BADGE_VARIANTS[variant];
+  if (!Variant) throw new Error(`Unmapped variant ${variant}`)
+
+  return <Variant />
+}
 
 const Link = styled.a`
   text-decoration: none;

@@ -11,24 +11,42 @@ const Header = () => {
   return (
     <header>
       <SuperHeader />
-      <MainHeader>
-        <Logo />
-        <Nav>
-          <NavLink href="/sale">Sale</NavLink>
-          <NavLink href="/new">New&nbsp;Releases</NavLink>
-          <NavLink href="/men">Men</NavLink>
-          <NavLink href="/women">Women</NavLink>
-          <NavLink href="/kids">Kids</NavLink>
-          <NavLink href="/collections">Collections</NavLink>
-        </Nav>
-      </MainHeader>
+      <MainWrapper>
+        <MainHeader>
+          <LogoWrapper>
+            <Logo />
+          </LogoWrapper>
+          <Nav>
+            <NavLink href="/sale">Sale</NavLink>
+            <NavLink href="/new">New&nbsp;Releases</NavLink>
+            <NavLink href="/men">Men</NavLink>
+            <NavLink href="/women">Women</NavLink>
+            <NavLink href="/kids">Kids</NavLink>
+            <NavLink href="/collections">Collections</NavLink>
+          </Nav>
+        </MainHeader>
+
+      </MainWrapper>
     </header>
   );
 };
 
+const MainWrapper = styled.header`
+  position: relative;
+`
+
+const LogoWrapper = styled.span`
+  position: absolute;
+  left: 2rem;
+  top: 21px;
+`
+
 const MainHeader = styled.div`
-  padding: 0 32px;
+  padding: 1.625rem 32px;
   border-bottom: 1px solid ${COLORS.gray[300]};
+
+  display: flex;
+  justify-content: center;
 `;
 
 const Nav = styled.nav``;
@@ -39,10 +57,16 @@ const NavLink = styled.a`
   text-decoration: none;
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
-
+  
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+  
+  &:not(:last-of-type) {
+    margin-right: 3rem;
+  }
+  
+
 `;
 
 export default Header;

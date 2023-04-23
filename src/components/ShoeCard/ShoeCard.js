@@ -35,6 +35,14 @@ const ShoeCard = ({
     ? <Badge variant={variant} />
     : null
 
+  const salePriceMarkup = variant === 'on-sale'
+    ? <SalePrice>{formatPrice(price)}</SalePrice>
+    : null;
+
+  const priceMarkup = variant === 'on-sale'
+    ? <SlashedPrice>{formatPrice(price)}</SlashedPrice>
+    : <Price>{formatPrice(price)}</Price>
+
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
@@ -45,10 +53,11 @@ const ShoeCard = ({
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
-          <Price>{formatPrice(price)}</Price>
+          {priceMarkup}
         </Row>
         <Row>
           <ColorInfo>{pluralize('Color', numOfColors)}</ColorInfo>
+          {salePriceMarkup}
         </Row>
       </Wrapper>
     </Link>
@@ -113,6 +122,8 @@ const Image = styled.img`
 
 const Row = styled.div`
   font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Name = styled.h3`
@@ -120,7 +131,14 @@ const Name = styled.h3`
   color: ${COLORS.gray[900]};
 `;
 
-const Price = styled.span``;
+const Price = styled.span`
+  font-weight: ${WEIGHTS.normal};
+`;
+
+const SlashedPrice = styled(Price)`
+  color: ${COLORS.gray[700]};
+  text-decoration: line-through;
+`
 
 const ColorInfo = styled.p`
   color: ${COLORS.gray[700]};

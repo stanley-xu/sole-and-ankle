@@ -47,12 +47,13 @@ const Wrapper = styled.div`
 `;
 
 const LeftColumn = styled.div`
+  flex: 1;
   margin-right: 2rem;
   margin-top: 11px;
 `;
 
 const MainColumn = styled.div`
-  flex: 1;
+  flex: 5;
 `;
 
 const Header = styled.header`

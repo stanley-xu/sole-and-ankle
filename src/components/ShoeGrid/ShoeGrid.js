@@ -3,12 +3,16 @@ import styled from 'styled-components/macro';
 
 import SHOES from '../../data';
 import ShoeCard from '../ShoeCard';
+import Spacer from '../Spacer'
 
 const ShoeGrid = () => {
   return (
     <Wrapper>
       {SHOES.map((shoe) => (
-        <ShoeCard key={shoe.slug} {...shoe} />
+        <div>
+          <ShoeCard key={shoe.slug} {...shoe} />
+          <Spacer size={24} />
+        </div>
       ))}
     </Wrapper>
   );
@@ -16,7 +20,7 @@ const ShoeGrid = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  gap: 16px;
+  gap: 36px;
   flex-wrap: wrap;
 
   & > * {

@@ -27,6 +27,7 @@ const Wrapper = styled.div`
   color: ${COLORS.gray[300]};
   background-color: ${COLORS.gray[900]};
   display: flex;
+  align-items: center;
   padding: 0.5rem 2rem;
 
   & > :not(:last-child, :first-child) {

@@ -12,7 +12,9 @@ const Header = () => {
     <header>
       <SuperHeader />
       <MainHeader>
-        <Logo />
+        <HeaderSpacer>
+          <Logo />
+        </HeaderSpacer>
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -27,7 +29,9 @@ const Header = () => {
   );
 };
 
-const HeaderSpacer = () => <div />
+const HeaderSpacer = styled.div`
+  flex: 1;
+`
 
 const MainHeader = styled.div`
   padding: 21px 32px 23px 32px;
@@ -35,11 +39,6 @@ const MainHeader = styled.div`
 
   display: flex;
   align-items: baseline;
-
-  /* Create N-column layout */
-  & > * {
-    flex: 1;
-  }
 `;
 
 const Nav = styled.nav``;

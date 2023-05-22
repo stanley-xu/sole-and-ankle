@@ -41,7 +41,11 @@ const MainHeader = styled.div`
   align-items: baseline;
 `;
 
-const Nav = styled.nav``;
+const Nav = styled.nav`
+  display: flex;
+  gap: 3rem;
+  margin: 0 3rem;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
@@ -50,12 +54,7 @@ const NavLink = styled.a`
   color: ${COLORS.gray[900]};
   font-weight: ${WEIGHTS.medium};
 
-  &:not(:last-of-type) {
-    margin-right: 3rem;
-  }
-
   &:first-of-type {
-    margin-left: 1rem;
     color: ${COLORS.secondary};
   }
 `;

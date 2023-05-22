@@ -12,17 +12,6 @@ import ShoeGrid from '../ShoeGrid';
 const ShoeIndex = ({ sortId, setSortId }) => {
   return (
     <Wrapper>
-      <LeftColumn>
-        <Breadcrumbs>
-          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
-          <Breadcrumbs.Crumb href="/sale/shoes">
-            Shoes
-          </Breadcrumbs.Crumb>
-        </Breadcrumbs>
-        <Spacer size={42} />
-        <ShoeSidebar />
-      </LeftColumn>
       <MainColumn>
         <Header>
           <Title>Running</Title>
@@ -38,30 +27,45 @@ const ShoeIndex = ({ sortId, setSortId }) => {
         <Spacer size={34} />
         <ShoeGrid />
       </MainColumn>
+      {/* Leaving side bar markup after main content so tab-order prioritizes content */}
+      <LeftColumn>
+        <Breadcrumbs>
+          <Breadcrumbs.Crumb href="/">Home</Breadcrumbs.Crumb>
+          <Breadcrumbs.Crumb href="/sale">Sale</Breadcrumbs.Crumb>
+          <Breadcrumbs.Crumb href="/sale/shoes">
+            Shoes
+          </Breadcrumbs.Crumb>
+        </Breadcrumbs>
+        <Spacer size={42} />
+        <ShoeSidebar />
+      </LeftColumn>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
   display: flex;
+  flex-direction: row-reverse;
+  gap: 2rem;
+  /* Aligns sidebar nav and page title */
+  align-items: baseline;
 `;
 
 const LeftColumn = styled.div`
-  flex: 1;
-  margin-right: 2rem;
-  margin-top: 11px;
+  /* Using hard-coded suggested guard-rail instead of grow / shrink */
+  flex-basis: 248px;
+  /* margin-top: 11px; */
 `;
 
 const MainColumn = styled.div`
-  flex: 5;
+  flex: 1;
 `;
 
 const Header = styled.header`
   display: flex;
-
-  & > :first-child {
-    margin-right: auto;
-  }
+  /* Aligns "Sort" label and Select element to the Wrapper's baseline */
+  align-items: baseline;
+  justify-content: space-between;
 `;
 
 const Title = styled.h2`
